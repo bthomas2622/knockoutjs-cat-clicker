@@ -1,4 +1,4 @@
-var ViewModel = function () {
+var CatModel = function(){
 	this.clickCount = ko.observable(0);
 	this.name = ko.observable('Cassius Clay');
 	this.imgSrc = ko.observable('img/434164568_fea0ad4013_z.jpg');
@@ -11,9 +11,20 @@ var ViewModel = function () {
 		}
 	}, this);
 
+	this.people = ko.observableArray([
+		{nickname: 'Buzz'},
+		{nickname: 'Woody'},
+		{nickname: 'The Claw'}
+	]);
+};
+
+var ViewModel = function () {
+	this.currentCat = ko.observable(new CatModel());
+
 	this.incrementCounter = function() {
-		this.clickCount(this.clickCount() + 1);
+		this.currentCat().clickCount(this.currentCat().clickCount() + 1);
 	};
-}
+
+};
 
 ko.applyBindings(new ViewModel)
